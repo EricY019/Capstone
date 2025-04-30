@@ -1,0 +1,8 @@
+[0m] INFO: Starting training with resample -1
+[0m] INFO: Reading dataset from /home/jwyang/pretrain_pipeline/save/harp/v21_MLP-True-extended-pseudo-block-connected-hierarchy-regression_edge-position-True_norm_with-invalid_False-normalization_speedup-log2_tag_whole-machsuite-poly_perfutil-DSPutil-BRAMutil-LUTutil-FF
+1231 graphs in total: 861 train 184 val 186 test
+[0m] INFO: num features for training: 153
+[0m] INFO: size of the edge attribute is 335
+[0m] INFO: loading model from /home/jwyang/pretrain_pipeline/models/v21/regression_pragma_as_MLP_2l-m-2l-p_model_state_dict.pth
+Test batch ID (resample): -1 - Epoch 0 train
+epoch = 0, learning rate = 5.002501250625313e-07

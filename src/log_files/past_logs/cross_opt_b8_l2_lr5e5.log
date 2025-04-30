@@ -1,0 +1,127 @@
+task                       : regression
+subtask                    : train
+plot_dse                   : False
+save_freq                  : 20
+val_freq                   : 10
+test_freq                  : 10
+vis_per_kernel             : True
+force_regen                : True
+min_allowed_latency        : 100.0
+epsilon                    : 0.001
+normalizer                 : 10000000.0
+util_normalizer            : 1
+max_number                 : 10000000000.0
+norm_method                : speedup-log2
+new_speedup                : True
+invalid                    : False
+encode_log                 : False
+v_db                       : v21
+test_kernels               : None
+target_kernel              : None
+all_kernels                : True
+dataset                    : harp
+benchmarks                 : ['machsuite',
+                           :  'poly']
+tag                        : whole-machsuite-poly
+graph_type                 : extended-pseudo-block-connected-hierarchy
+encoder_path               : /home/jade1st/pj/GNN_Pretrain_for_HLS/pretrain_code_modified_on_HARP/models/encoders/pragma_as_MLP-encoders.klepto
+encode_edge                : True
+encode_edge_position       : True
+num_layers                 : 6
+num_features               : 153
+edge_dim                   : 335
+target                     : ['perf',
+                           :  'util-LUT',
+                           :  'util-FF',
+                           :  'util-DSP',
+                           :  'util-BRAM']
+MLP_common_lyr             : 0
+gnn_type                   : transformer
+dropout                    : 0.1
+jkn_mode                   : max
+jkn_enable                 : True
+node_attention             : True
+node_attention_MLP         : False
+separate_P                 : True
+separate_icmp              : False
+separate_T                 : False
+separate_pseudo            : True
+P_use_all_nodes            : True
+gae_T                      : False
+gae_P                      : False
+gnn_layer_after_MLP        : 1
+pragma_as_MLP              : True
+pragma_as_MLP_list         : ['tile',
+                           :  'pipeline',
+                           :  'parallel']
+pragma_scope               : block
+keep_pragma_attribute      : False
+pragma_order               : parallel_and_merge
+pragma_MLP_hidden_channels : [in_D // 2]
+merge_MLP_hidden_channels  : [in_D // 2]
+model_path                 : ckpt_pretrain/3/model_30.pt
+ensemble                   : 0
+ensemble_weights           : None
+class_model_path           : None
+feature_extract            : False
+fix_gnn_layer              : 1
+FT_extra                   : False
+save_model                 : True
+resample                   : False
+val_ratio                  : 0.15
+activation                 : elu
+D                          : 64
+lr                         : 0.001
+weight_decay               : 0
+scheduler                  : cosine
+warmup                     : linear
+random_seed                : 123
+batch_size                 : 64
+loss                       : MSE
+epoch_num                  : 200
+device                     : cuda:1
+explorer                   : exhaustive
+model_tag                  : test
+prune_util                 : True
+prune_class                : True
+print_every_iter           : 100
+plot_pred_points           : True
+user                       : jade1st
+hostname                   : scai5.cs.ucla.edu
+ts                         : 2025-02-03T16-14-55.916022
+Logging to /home/jade1st/pj/GNN_Pretrain_for_HLS/pretrain_code_modified_on_HARP/src/logs/dse_results_v21_2025-02-03T16-14-55.916022
+Skipping 265-18503lst_no_head.pt due to invalid edge_index shape: torch.Size([3, 6568])
+Skipping 112-9710rm.pt due to invalid edge_index shape: torch.Size([3, 1089])
+Skipping 226-14547power_digit_sum.pt due to invalid edge_index shape: torch.Size([3, 6232])
+Skipping 163-4110euler5.pt due to invalid edge_index shape: torch.Size([3, 281])
+Skipping 293-31786enum_3.pt due to invalid edge_index shape: torch.Size([3, 1154])
+Filtered dataset: 1537 valid pairs remain.
+Number of graphs in the dataset: 1537
+1537
+1537 graphs in total: 1537 train 0 val 0 test
+Filtered dataset: 1537 valid pairs remain.
+No paired graph and code files found. Check naming consistency.
+Filtered dataset: 0 valid pairs remain.
+No paired graph and code files found. Check naming consistency.
+Filtered dataset: 0 valid pairs remain.
+num features for training: 153
+size of the edge attribute is 335
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.69s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.70s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.85s/it]
+Traceback (most recent call last):
+  File "test_cross_model.py", line 425, in <module>
+    model.llm = get_peft_model(model.llm, peft_config)
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/peft/mapping.py", line 193, in get_peft_model
+    return MODEL_TYPE_TO_PEFT_MODEL_MAPPING[peft_config.task_type](
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/peft/peft_model.py", line 1609, in __init__
+    super().__init__(model, peft_config, adapter_name, **kwargs)
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/peft/peft_model.py", line 171, in __init__
+    self.base_model = cls(model, {adapter_name: peft_config}, adapter_name)
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/peft/tuners/lora/model.py", line 141, in __init__
+    super().__init__(model, config, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage)
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/peft/tuners/tuners_utils.py", line 184, in __init__
+    self.inject_adapter(self.model, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage)
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/peft/tuners/tuners_utils.py", line 435, in inject_adapter
+    peft_config = self._prepare_adapter_config(peft_config, model_config)
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/peft/tuners/lora/model.py", line 464, in _prepare_adapter_config
+    raise ValueError("Please specify `target_modules` in `peft_config`")
+ValueError: Please specify `target_modules` in `peft_config`

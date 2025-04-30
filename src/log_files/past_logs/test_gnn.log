@@ -1,0 +1,109 @@
+/home/jade1st/pj/GNN_Pretrain_for_HLS/pretrain_code_modified_on_HARP/src/data_pretrain.py:334: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  graph_data = torch.load(graph_path)
+task                       : regression
+subtask                    : train
+plot_dse                   : False
+save_freq                  : 20
+val_freq                   : 10
+test_freq                  : 10
+vis_per_kernel             : True
+force_regen                : True
+min_allowed_latency        : 100.0
+epsilon                    : 0.001
+normalizer                 : 10000000.0
+util_normalizer            : 1
+max_number                 : 10000000000.0
+norm_method                : speedup-log2
+new_speedup                : True
+invalid                    : False
+encode_log                 : False
+v_db                       : v21
+test_kernels               : None
+target_kernel              : None
+all_kernels                : True
+dataset                    : harp
+benchmarks                 : ['machsuite',
+                           :  'poly']
+tag                        : whole-machsuite-poly
+graph_type                 : extended-pseudo-block-connected-hierarchy
+encoder_path               : /home/jade1st/pj/GNN_Pretrain_for_HLS/pretrain_code_modified_on_HARP/models/encoders/pragma_as_MLP-encoders.klepto
+encode_edge                : True
+encode_edge_position       : True
+num_layers                 : 6
+num_features               : 153
+edge_dim                   : 335
+target                     : ['perf',
+                           :  'util-LUT',
+                           :  'util-FF',
+                           :  'util-DSP',
+                           :  'util-BRAM']
+MLP_common_lyr             : 0
+gnn_type                   : transformer
+dropout                    : 0.1
+jkn_mode                   : max
+jkn_enable                 : True
+node_attention             : True
+node_attention_MLP         : False
+separate_P                 : True
+separate_icmp              : False
+separate_T                 : False
+separate_pseudo            : True
+P_use_all_nodes            : True
+gae_T                      : False
+gae_P                      : False
+gnn_layer_after_MLP        : 1
+pragma_as_MLP              : True
+pragma_as_MLP_list         : ['tile',
+                           :  'pipeline',
+                           :  'parallel']
+pragma_scope               : block
+keep_pragma_attribute      : False
+pragma_order               : parallel_and_merge
+pragma_MLP_hidden_channels : [in_D // 2]
+merge_MLP_hidden_channels  : [in_D // 2]
+model_path                 : ckpt_pretrain/3/model_30.pt
+ensemble                   : 0
+ensemble_weights           : None
+class_model_path           : None
+feature_extract            : False
+fix_gnn_layer              : 1
+FT_extra                   : False
+save_model                 : True
+resample                   : False
+val_ratio                  : 0.15
+activation                 : elu
+D                          : 64
+lr                         : 0.001
+weight_decay               : 0
+scheduler                  : cosine
+warmup                     : linear
+random_seed                : 123
+batch_size                 : 64
+loss                       : MSE
+epoch_num                  : 200
+device                     : cuda:1
+explorer                   : exhaustive
+model_tag                  : test
+prune_util                 : True
+prune_class                : True
+print_every_iter           : 100
+plot_pred_points           : True
+user                       : jade1st
+hostname                   : scai2
+ts                         : 2025-01-31T14-32-24.876446
+Logging to /home/jade1st/pj/GNN_Pretrain_for_HLS/pretrain_code_modified_on_HARP/src/logs/dse_results_v21_2025-01-31T14-32-24.876446
+Sample 123 (274-14823matrix-row-column-order):
+  edge_index shape: torch.Size([3, 6568])
+----------------------------------------
+Sample 522 (118-22819sum):
+  edge_index shape: torch.Size([3, 1089])
+----------------------------------------
+Sample 982 (234-27088bench):
+  edge_index shape: torch.Size([3, 6232])
+----------------------------------------
+Sample 1102 (171-20700p5):
+  edge_index shape: torch.Size([3, 281])
+----------------------------------------
+Sample 1294 (304-13860simple):
+  edge_index shape: torch.Size([3, 1154])
+----------------------------------------

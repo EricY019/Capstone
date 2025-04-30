@@ -1,0 +1,109 @@
+; ModuleID = './code/048-51count_ones.c'
+source_filename = "./code/048-51count_ones.c"
+target datalayout = "e-m:o-i64:64-i128:128-n32:64-S128-Fn32"
+target triple = "arm64-apple-macosx14.0.0"
+
+@.str = private unnamed_addr constant [47 x i8] c"number of 1's in bit representation of %d: %d\0A\00", align 1
+
+; Function Attrs: noinline nounwind optnone ssp uwtable(sync)
+define i32 @count_ones(i32 noundef %n) #0 {
+entry:
+  %n.addr = alloca i32, align 4
+  %ones = alloca i32, align 4
+  store i32 %n, ptr %n.addr, align 4
+  store i32 0, ptr %ones, align 4
+  br label %while.cond
+
+while.cond:                                       ; preds = %if.end, %entry
+  %0 = load i32, ptr %n.addr, align 4
+  %cmp = icmp ne i32 %0, 0
+  br i1 %cmp, label %while.body, label %while.end
+
+while.body:                                       ; preds = %while.cond
+  %1 = load i32, ptr %n.addr, align 4
+  %and = and i32 %1, 1
+  %cmp1 = icmp eq i32 %and, 1
+  br i1 %cmp1, label %if.then, label %if.end
+
+if.then:                                          ; preds = %while.body
+  %2 = load i32, ptr %ones, align 4
+  %inc = add nsw i32 %2, 1
+  store i32 %inc, ptr %ones, align 4
+  br label %if.end
+
+if.end:                                           ; preds = %if.then, %while.body
+  %3 = load i32, ptr %n.addr, align 4
+  %shr = ashr i32 %3, 1
+  store i32 %shr, ptr %n.addr, align 4
+  br label %while.cond, !llvm.loop !5
+
+while.end:                                        ; preds = %while.cond
+  %4 = load i32, ptr %ones, align 4
+  ret i32 %4
+}
+
+; Function Attrs: noinline nounwind optnone ssp uwtable(sync)
+define i32 @count_ones_fast(i32 noundef %n) #0 {
+entry:
+  %n.addr = alloca i32, align 4
+  %ones = alloca i32, align 4
+  store i32 %n, ptr %n.addr, align 4
+  store i32 0, ptr %ones, align 4
+  br label %while.cond
+
+while.cond:                                       ; preds = %while.body, %entry
+  %0 = load i32, ptr %n.addr, align 4
+  %cmp = icmp ne i32 %0, 0
+  br i1 %cmp, label %while.body, label %while.end
+
+while.body:                                       ; preds = %while.cond
+  %1 = load i32, ptr %n.addr, align 4
+  %2 = load i32, ptr %n.addr, align 4
+  %sub = sub nsw i32 %2, 1
+  %and = and i32 %1, %sub
+  store i32 %and, ptr %n.addr, align 4
+  %3 = load i32, ptr %ones, align 4
+  %inc = add nsw i32 %3, 1
+  store i32 %inc, ptr %ones, align 4
+  br label %while.cond, !llvm.loop !7
+
+while.end:                                        ; preds = %while.cond
+  %4 = load i32, ptr %ones, align 4
+  ret i32 %4
+}
+
+; Function Attrs: noinline nounwind optnone ssp uwtable(sync)
+define i32 @main() #0 {
+entry:
+  %retval = alloca i32, align 4
+  %i = alloca i32, align 4
+  store i32 0, ptr %retval, align 4
+  store i32 55, ptr %i, align 4
+  %0 = load i32, ptr %i, align 4
+  %1 = load i32, ptr %i, align 4
+  %call = call i32 @count_ones(i32 noundef %1)
+  %call1 = call i32 (ptr, ...) @printf(ptr noundef @.str, i32 noundef %0, i32 noundef %call)
+  store i32 57, ptr %i, align 4
+  %2 = load i32, ptr %i, align 4
+  %3 = load i32, ptr %i, align 4
+  %call2 = call i32 @count_ones_fast(i32 noundef %3)
+  %call3 = call i32 (ptr, ...) @printf(ptr noundef @.str, i32 noundef %2, i32 noundef %call2)
+  ret i32 0
+}
+
+declare i32 @printf(ptr noundef, ...) #1
+
+attributes #0 = { noinline nounwind optnone ssp uwtable(sync) "frame-pointer"="non-leaf" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="apple-m1" "target-features"="+aes,+altnzcv,+ccdp,+ccidx,+complxnum,+crc,+dit,+dotprod,+flagm,+fp-armv8,+fp16fml,+fptoint,+fullfp16,+jsconv,+lse,+neon,+pauth,+perfmon,+predres,+ras,+rcpc,+rdm,+sb,+sha2,+sha3,+specrestrict,+ssbs,+v8.1a,+v8.2a,+v8.3a,+v8.4a,+v8a,+zcm,+zcz" }
+attributes #1 = { "frame-pointer"="non-leaf" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="apple-m1" "target-features"="+aes,+altnzcv,+ccdp,+ccidx,+complxnum,+crc,+dit,+dotprod,+flagm,+fp-armv8,+fp16fml,+fptoint,+fullfp16,+jsconv,+lse,+neon,+pauth,+perfmon,+predres,+ras,+rcpc,+rdm,+sb,+sha2,+sha3,+specrestrict,+ssbs,+v8.1a,+v8.2a,+v8.3a,+v8.4a,+v8a,+zcm,+zcz" }
+
+!llvm.module.flags = !{!0, !1, !2, !3}
+!llvm.ident = !{!4}
+
+!0 = !{i32 1, !"wchar_size", i32 4}
+!1 = !{i32 8, !"PIC Level", i32 2}
+!2 = !{i32 7, !"uwtable", i32 1}
+!3 = !{i32 7, !"frame-pointer", i32 1}
+!4 = !{!"Homebrew clang version 19.1.4"}
+!5 = distinct !{!5, !6}
+!6 = !{!"llvm.loop.mustprogress"}
+!7 = distinct !{!7, !6}

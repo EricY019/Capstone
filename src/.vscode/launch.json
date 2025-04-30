@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: main.py",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py",
+            "env": {},
+            "console": "integratedTerminal",
+            "args": [],
+            "cwd": "/share/user/lm/24fall/cs259/HARP/src"
+        },
+        {
+            "name": "Python: gnn_pretrain2.py",
+            "type": "python",
+            "request": "launch",
+            "program": "gnn_pretrain2.py",
+            "env": {},
+            "console": "integratedTerminal",
+            "args": [],
+            "cwd": "/share/user/lm/24fall/cs259/HARP/src"
+        }
+    ]
+}

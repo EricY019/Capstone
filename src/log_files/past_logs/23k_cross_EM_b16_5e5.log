@@ -1,0 +1,120 @@
+task                       : regression
+subtask                    : train
+plot_dse                   : False
+save_freq                  : 20
+val_freq                   : 10
+test_freq                  : 10
+vis_per_kernel             : True
+force_regen                : True
+min_allowed_latency        : 100.0
+epsilon                    : 0.001
+normalizer                 : 10000000.0
+util_normalizer            : 1
+max_number                 : 10000000000.0
+norm_method                : speedup-log2
+new_speedup                : True
+invalid                    : False
+encode_log                 : False
+v_db                       : v21
+test_kernels               : None
+target_kernel              : None
+all_kernels                : True
+dataset                    : harp
+benchmarks                 : ['machsuite',
+                           :  'poly']
+tag                        : whole-machsuite-poly
+graph_type                 : extended-pseudo-block-connected-hierarchy
+encoder_path               : /home/jade1st/pj/GNN_Pretrain_for_HLS/pretrain_code_modified_on_HARP/models/encoders/pragma_as_MLP-encoders.klepto
+encode_edge                : True
+encode_edge_position       : True
+num_layers                 : 6
+num_features               : 153
+edge_dim                   : 335
+target                     : ['perf',
+                           :  'util-LUT',
+                           :  'util-FF',
+                           :  'util-DSP',
+                           :  'util-BRAM']
+MLP_common_lyr             : 0
+gnn_type                   : transformer
+dropout                    : 0.1
+jkn_mode                   : max
+jkn_enable                 : True
+node_attention             : True
+node_attention_MLP         : False
+separate_P                 : True
+separate_icmp              : False
+separate_T                 : False
+separate_pseudo            : True
+P_use_all_nodes            : True
+gae_T                      : False
+gae_P                      : False
+gnn_layer_after_MLP        : 1
+pragma_as_MLP              : True
+pragma_as_MLP_list         : ['tile',
+                           :  'pipeline',
+                           :  'parallel']
+pragma_scope               : block
+keep_pragma_attribute      : False
+pragma_order               : parallel_and_merge
+pragma_MLP_hidden_channels : [in_D // 2]
+merge_MLP_hidden_channels  : [in_D // 2]
+model_path                 : ckpt_pretrain/3/model_30.pt
+ensemble                   : 0
+ensemble_weights           : None
+class_model_path           : None
+feature_extract            : False
+fix_gnn_layer              : 1
+FT_extra                   : False
+save_model                 : True
+resample                   : False
+val_ratio                  : 0.15
+activation                 : elu
+D                          : 64
+lr                         : 0.001
+weight_decay               : 0
+scheduler                  : cosine
+warmup                     : linear
+random_seed                : 123
+batch_size                 : 64
+loss                       : MSE
+epoch_num                  : 200
+device                     : cuda:1
+explorer                   : exhaustive
+model_tag                  : test
+prune_util                 : True
+prune_class                : True
+print_every_iter           : 100
+plot_pred_points           : True
+user                       : jade1st
+hostname                   : scai5.cs.ucla.edu
+ts                         : 2025-02-08T14-19-59.368959
+Logging to /home/jade1st/pj/GNN_Pretrain_for_HLS/pretrain_code_modified_on_HARP/src/logs/dse_results_v21_2025-02-08T14-19-59.368959
+Filtered dataset: 14762 valid pairs remain.
+Number of graphs in the dataset: 14762
+14762
+14762 graphs in total: 11809 train 1476 val 1477 test
+Filtered dataset: 11809 valid pairs remain.
+Filtered dataset: 1476 valid pairs remain.
+Filtered dataset: 1477 valid pairs remain.
+num features for training: 153
+size of the edge attribute is 335
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.12s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:30<00:30, 30.30s/it]
+Traceback (most recent call last):
+  File "./test_cross_model.py", line 511, in <module>
+    base_model = CrossModalModel(gnn_config, llm_config, mode="both", latent_align=ALIGN, fusion_method=FUSION).to(main_device)
+  File "./test_cross_model.py", line 357, in __init__
+    self.llm = LLMModel(**llm_config)
+  File "./test_cross_model.py", line 309, in __init__
+    basemodel = AutoModelForCausalLM.from_pretrained(
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/transformers/modeling_utils.py", line 4225, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/transformers/modeling_utils.py", line 4728, in _load_pretrained_model
+    new_error_msgs, offload_index, state_dict_index = _load_state_dict_into_meta_model(
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/transformers/modeling_utils.py", line 993, in _load_state_dict_into_meta_model
+    set_module_tensor_to_device(model, param_name, param_device, **set_module_kwargs)
+  File "/home/jade1st/miniconda3/envs/harp/lib/python3.8/site-packages/accelerate/utils/modeling.py", line 329, in set_module_tensor_to_device
+    new_value = value.to(device)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 0 has a total capacity of 44.43 GiB of which 34.69 MiB is free. Process 690538 has 1.87 GiB memory in use. Process 690541 has 1.84 GiB memory in use. Process 690532 has 1.87 GiB memory in use. Process 690535 has 1.84 GiB memory in use. Process 690529 has 1.84 GiB memory in use. Process 690544 has 1.87 GiB memory in use. Process 695153 has 1.89 GiB memory in use. Process 695159 has 1.89 GiB memory in use. Process 695147 has 1.89 GiB memory in use. Process 695144 has 1.84 GiB memory in use. Process 695156 has 1.84 GiB memory in use. Process 695150 has 1.84 GiB memory in use. Process 699821 has 1.84 GiB memory in use. Process 699818 has 1.92 GiB memory in use. Process 699815 has 1.84 GiB memory in use. Process 699830 has 1.92 GiB memory in use. Process 699824 has 1.92 GiB memory in use. Process 699827 has 1.84 GiB memory in use. Including non-PyTorch memory, this process has 10.71 GiB memory in use. Of the allocated memory 10.29 GiB is allocated by PyTorch, and 5.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

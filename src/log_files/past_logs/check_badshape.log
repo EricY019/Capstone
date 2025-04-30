@@ -1,0 +1,11 @@
+Found 14766 .pt files in '/local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN'.
+File /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/392-19121_unreachable-1.pt has invalid edge_index shape torch.Size([3, 265])
+File /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/202-15432_sum.pt has invalid edge_index shape torch.Size([3, 535])
+File /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/170-33889_ntello1.pt has invalid edge_index shape torch.Size([3, 302])
+File /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/254-18141_iterator.pt has invalid edge_index shape torch.Size([3, 726])
+
+Summary of files with invalid shapes or missing edge_index:
+  - /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/392-19121_unreachable-1.pt
+  - /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/202-15432_sum.pt
+  - /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/170-33889_ntello1.pt
+  - /local2/shared_data/hugging_face_c/graphs_harp/harp_23k/pt_GNN/254-18141_iterator.pt
